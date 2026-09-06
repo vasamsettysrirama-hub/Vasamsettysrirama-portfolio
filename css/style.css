@@ -1,5 +1,60 @@
 /* =========================================
-   MODERN DARK CYAN PORTFOLIO
+   CUSTOM THEME VARIABLES
+========================================= */
+
+:root {
+    --bg-color: #050B14;
+    --header-color: #0B1726;
+    --surface-color: #0B1726;
+    --surface-dark: #07111F;
+
+    --primary-color: #22D3EE;
+    --secondary-color: #67E8F9;
+
+    --text-color: #ECFEFF;
+    --muted-text: #A5CFE0;
+
+    --border-color: rgba(34, 211, 238, 0.18);
+
+    --input-bg: #050B14;
+    --nav-bg: rgba(5, 11, 20, 0.96);
+
+    --shadow: 0 15px 45px rgba(0, 0, 0, 0.45);
+
+    --transition: 0.3s ease;
+}
+
+
+/* =========================================
+   LIGHT THEME
+========================================= */
+
+[data-theme="light"] {
+
+    --bg-color: #F0FDFA;
+    --header-color: #E0F7FA;
+
+    --surface-color: #FFFFFF;
+    --surface-dark: #F8FAFC;
+
+    --primary-color: #0891B2;
+    --secondary-color: #0E7490;
+
+    --text-color: #0F172A;
+    --muted-text: #475569;
+
+    --border-color: rgba(8, 145, 178, 0.25);
+
+    --input-bg: #FFFFFF;
+    --nav-bg: rgba(255, 255, 255, 0.96);
+
+    --shadow:
+        0 15px 40px rgba(15, 23, 42, 0.12);
+}
+
+
+/* =========================================
+   RESET
 ========================================= */
 
 * {
@@ -8,15 +63,24 @@
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
     font-family: "Segoe UI", Arial, sans-serif;
-    background: #050B14;
-    color: #ECFEFF;
+
+    background: var(--bg-color);
+
+    color: var(--text-color);
+
     line-height: 1.7;
+
+    transition:
+        background-color var(--transition),
+        color var(--transition);
 }
 
 
@@ -25,111 +89,215 @@ body {
 ========================================= */
 
 header {
+
     background:
         radial-gradient(
             circle at 15% 20%,
             rgba(34, 211, 238, 0.30),
             transparent 30%
         ),
+
         radial-gradient(
             circle at 85% 80%,
             rgba(103, 232, 249, 0.16),
             transparent 30%
         ),
+
         linear-gradient(
             135deg,
-            #050B14,
-            #0B1726,
-            #07111F
+            var(--bg-color),
+            var(--header-color),
+            var(--surface-dark)
         );
 
-    color: #ECFEFF;
+    color: var(--text-color);
+
     text-align: center;
-    padding: 75px 20px 65px;
-    position: relative;
-    overflow: hidden;
+
+    padding: 45px 15px;
+
+    transition:
+        background var(--transition),
+        color var(--transition);
 }
 
+
 header h1 {
-    font-size: 50px;
+
+    font-size: 32px;
+
     font-weight: 700;
+
     letter-spacing: 1px;
+
     margin-bottom: 10px;
-    position: relative;
-    z-index: 2;
 
     text-shadow:
         0 0 20px rgba(34, 211, 238, 0.30);
 }
 
+
 header p {
-    font-size: 19px;
-    color: #A5CFE0;
-    position: relative;
-    z-index: 2;
+
+    font-size: 15px;
+
+    color: var(--muted-text);
 }
 
 
 /* =========================================
-   NAVIGATION
+   NAVIGATION - FLEXBOX
 ========================================= */
 
 nav {
-    background: rgba(5, 11, 20, 0.96);
-    border-bottom: 1px solid rgba(34, 211, 238, 0.22);
-    padding: 20px;
+
+    background: var(--nav-bg);
+
+    border-bottom:
+        1px solid var(--border-color);
+
+    padding: 12px;
+
     text-align: center;
+
     position: sticky;
+
     top: 0;
+
     z-index: 1000;
+
     backdrop-filter: blur(12px);
+
+    transition:
+        background var(--transition);
 }
+
 
 nav ul {
+
     list-style: none;
+
     padding: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 5px;
 }
+
 
 nav ul li {
-    display: inline-block;
-    margin: 0 12px;
+
+    width: 100%;
 }
+
 
 nav ul li a {
-    color: #A5CFE0;
+
+    display: block;
+
+    width: 100%;
+
+    color: var(--muted-text);
+
     text-decoration: none;
-    font-size: 16px;
+
+    text-align: center;
+
+    font-size: 14px;
+
     font-weight: 600;
-    padding: 10px 18px;
+
+    padding: 8px 10px;
+
     border-radius: 8px;
-    transition: all 0.3s ease;
+
+    transition:
+        all var(--transition);
 }
 
+
 nav ul li a:hover {
-    color: #050B14;
+
+    color: var(--bg-color);
 
     background:
         linear-gradient(
             135deg,
-            #22D3EE,
-            #67E8F9
+            var(--primary-color),
+            var(--secondary-color)
         );
 
     box-shadow:
-        0 5px 25px rgba(34, 211, 238, 0.30);
+        0 5px 25px
+        rgba(34, 211, 238, 0.30);
 
     transform: translateY(-2px);
 }
 
 
 /* =========================================
-   MAIN AREA
+   THEME BUTTON - RIGHT SIDE
+========================================= */
+
+#theme-toggle {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    padding: 9px 16px;
+    width: auto;
+
+    background: transparent;
+
+    color: var(--primary-color);
+
+    border: 1px solid var(--primary-color);
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+    #theme-toggle:hover {
+    background: var(--primary-color);
+    color: var(--bg-color);
+
+    transform: translateY(-50%) translateY(-2px);
+
+    box-shadow:
+        0 5px 20px rgba(34, 211, 238, 0.25);
+}
+
+
+/* =========================================
+   MAIN AREA - CSS GRID
 ========================================= */
 
 main {
+
     max-width: 1100px;
-    margin: 60px auto;
-    padding: 0 25px;
+
+    margin: 30px auto;
+
+    padding: 0 12px;
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 20px;
 }
 
 
@@ -138,32 +306,51 @@ main {
 ========================================= */
 
 section {
+
     background:
         linear-gradient(
             145deg,
-            rgba(11, 23, 38, 0.98),
-            rgba(5, 11, 20, 0.98)
+            var(--surface-color),
+            var(--surface-dark)
         );
 
-    padding: 45px;
-    margin-bottom: 35px;
-    border-radius: 20px;
+    padding: 28px 20px;
 
-    border: 1px solid rgba(34, 211, 238, 0.18);
+    margin-bottom: 20px;
 
-    box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.45),
-        0 0 25px rgba(34, 211, 238, 0.04),
-        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+
+    border:
+        1px solid var(--border-color);
+
+    box-shadow: var(--shadow);
 
     position: relative;
+
     overflow: hidden;
+
+    transition:
+        background var(--transition),
+        border var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition);
 }
 
+
+section:hover {
+
+    transform: translateY(-5px);
+}
+
+
 section::before {
+
     content: "";
+
     position: absolute;
+
     width: 180px;
+
     height: 180px;
 
     background:
@@ -174,50 +361,65 @@ section::before {
         );
 
     border-radius: 50%;
+
     top: -90px;
+
     right: -60px;
 }
 
-section h2 {
-    color: #22D3EE;
-    font-size: 32px;
-    margin-bottom: 20px;
-    position: relative;
 
-    text-shadow:
-        0 0 15px rgba(34, 211, 238, 0.20);
+section h2 {
+
+    color: var(--primary-color);
+
+    font-size: 26px;
+
+    margin-bottom: 20px;
+
+    position: relative;
 }
 
+
 section h2::after {
+
     content: "";
+
     display: block;
+
     width: 70px;
+
     height: 4px;
+
     margin-top: 10px;
 
     background:
         linear-gradient(
             90deg,
-            #22D3EE,
-            #67E8F9
+            var(--primary-color),
+            var(--secondary-color)
         );
 
     border-radius: 10px;
-
-    box-shadow:
-        0 0 10px rgba(34, 211, 238, 0.35);
 }
 
+
 section h3 {
-    color: #67E8F9;
+
+    color: var(--secondary-color);
+
     font-size: 21px;
+
     margin-top: 25px;
+
     margin-bottom: 10px;
 }
 
+
 section p {
-    color: #A5CFE0;
-    font-size: 16px;
+
+    color: var(--muted-text);
+
+    font-size: 15px;
 }
 
 
@@ -226,12 +428,91 @@ section p {
 ========================================= */
 
 ul {
+
     padding-left: 22px;
 }
 
+
 li {
-    color: #A5CFE0;
+
+    color: var(--muted-text);
+
     margin-bottom: 8px;
+}
+
+
+/* =========================================
+   CURRENT LEARNING - CSS GRID
+========================================= */
+
+.learning-section {
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+}
+
+
+.learning-section h2 {
+
+    grid-column: 1 / -1;
+}
+
+
+.learning-section article {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--surface-color),
+            var(--surface-dark)
+        );
+
+    padding: 25px;
+
+    border:
+        1px solid var(--border-color);
+
+    border-left:
+        4px solid var(--primary-color);
+
+    border-radius: 14px;
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+
+.learning-section article:hover {
+
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.25),
+
+        0 0 25px
+        rgba(34, 211, 238, 0.15);
+}
+
+
+.learning-section article h3 {
+
+    color: var(--secondary-color);
+
+    margin-top: 0;
+
+    margin-bottom: 10px;
+}
+
+
+.learning-section article p {
+
+    color: var(--muted-text);
+
+    font-size: 15px;
 }
 
 
@@ -240,36 +521,51 @@ li {
 ========================================= */
 
 .project {
+
     background:
         linear-gradient(
             135deg,
-            rgba(11, 23, 38, 0.95),
-            rgba(5, 11, 20, 0.95)
+            var(--surface-color),
+            var(--surface-dark)
         );
 
-    border: 1px solid rgba(34, 211, 238, 0.16);
-    border-left: 4px solid #22D3EE;
+    border:
+        1px solid var(--border-color);
+
+    border-left:
+        4px solid var(--primary-color);
 
     padding: 28px;
+
     margin: 22px 0;
+
     border-radius: 14px;
 
-    transition: all 0.3s ease;
+    transition:
+        all var(--transition);
 }
+
 
 .project:hover {
+
     transform: translateY(-7px);
 
-    border-color: #67E8F9;
+    border-color:
+        var(--secondary-color);
 
     box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.45),
-        0 0 30px rgba(34, 211, 238, 0.18);
+        0 15px 35px rgba(0, 0, 0, 0.25),
+
+        0 0 30px
+        rgba(34, 211, 238, 0.18);
 }
 
+
 .project h3 {
+
     margin-top: 0;
-    color: #22D3EE;
+
+    color: var(--primary-color);
 }
 
 
@@ -278,33 +574,44 @@ li {
 ========================================= */
 
 .contact-info {
+
     background:
         linear-gradient(
             135deg,
-            rgba(11, 23, 38, 0.90),
-            rgba(5, 11, 20, 0.95)
+            var(--surface-color),
+            var(--surface-dark)
         );
 
     padding: 28px;
+
     margin: 25px 0;
 
     border-radius: 15px;
 
-    border: 1px solid rgba(34, 211, 238, 0.18);
+    border:
+        1px solid var(--border-color);
 
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.30);
+        0 10px 30px
+        rgba(0, 0, 0, 0.20);
 }
 
+
 .contact-info h3 {
+
     margin-top: 0;
-    color: #22D3EE;
+
+    color: var(--primary-color);
+
     font-size: 22px;
 }
 
+
 .contact-info p {
+
     margin: 8px 0;
-    color: #A5CFE0;
+
+    color: var(--muted-text);
 }
 
 
@@ -313,12 +620,17 @@ li {
 ========================================= */
 
 a {
-    color: #22D3EE;
-    transition: all 0.3s ease;
+
+    color: var(--primary-color);
+
+    transition:
+        color var(--transition);
 }
 
+
 a:hover {
-    color: #67E8F9;
+
+    color: var(--secondary-color);
 }
 
 
@@ -327,88 +639,114 @@ a:hover {
 ========================================= */
 
 form {
+
     background:
         linear-gradient(
             145deg,
-            rgba(11, 23, 38, 0.98),
-            rgba(5, 11, 20, 0.98)
+            var(--surface-color),
+            var(--surface-dark)
         );
 
-    padding: 35px;
+    padding: 25px 18px;
 
-    border: 1px solid rgba(34, 211, 238, 0.18);
+    border:
+        1px solid var(--border-color);
 
     border-radius: 15px;
 
     margin-top: 25px;
 
     box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.30);
+        0 10px 35px
+        rgba(0, 0, 0, 0.20);
 }
 
+
 fieldset {
+
     border: none;
 }
 
+
 legend {
-    color: #22D3EE;
+
+    color: var(--primary-color);
+
     font-size: 23px;
+
     font-weight: 700;
+
     margin-bottom: 20px;
 }
 
+
 label {
+
     display: block;
 
-    color: #ECFEFF;
+    color: var(--text-color);
 
     font-weight: 600;
 
     margin-top: 18px;
+
     margin-bottom: 7px;
 }
 
+
 input,
 textarea {
+
     width: 100%;
 
     padding: 14px 16px;
 
-    border: 1px solid rgba(165, 207, 224, 0.25);
+    border:
+        1px solid var(--border-color);
 
     border-radius: 9px;
 
-    background: rgba(5, 11, 20, 0.80);
+    background: var(--input-bg);
 
-    color: #ECFEFF;
+    color: var(--text-color);
 
     font-size: 16px;
 
     font-family: inherit;
 
-    transition: all 0.3s ease;
+    transition:
+        all var(--transition);
 }
+
 
 input::placeholder,
 textarea::placeholder {
-    color: #527080;
+
+    color: #78909C;
 }
+
 
 input:focus,
 textarea:focus {
+
     outline: none;
 
-    border-color: #67E8F9;
-
-    background: rgba(11, 23, 38, 0.95);
+    border-color:
+        var(--secondary-color);
 
     box-shadow:
-        0 0 0 3px rgba(103, 232, 249, 0.10),
-        0 0 25px rgba(34, 211, 238, 0.15);
+        0 0 0 3px
+        rgba(103, 232, 249, 0.10),
+
+        0 0 25px
+        rgba(34, 211, 238, 0.15);
 }
 
+
 textarea {
+
     min-height: 160px;
+
     resize: vertical;
 }
 
@@ -417,10 +755,12 @@ textarea {
    SEND MESSAGE BUTTON
 ========================================= */
 
-button {
+form button {
+
     display: block;
 
-    margin-left: auto;
+    width: 100%;
+
     margin-top: 22px;
 
     padding: 14px 30px;
@@ -428,11 +768,11 @@ button {
     background:
         linear-gradient(
             135deg,
-            #22D3EE,
-            #67E8F9
+            var(--primary-color),
+            var(--secondary-color)
         );
 
-    color: #050B14;
+    color: var(--bg-color);
 
     border: none;
 
@@ -445,16 +785,21 @@ button {
     cursor: pointer;
 
     box-shadow:
-        0 8px 25px rgba(34, 211, 238, 0.25);
+        0 8px 25px
+        rgba(34, 211, 238, 0.25);
 
-    transition: all 0.3s ease;
+    transition:
+        all var(--transition);
 }
 
-button:hover {
+
+form button:hover {
+
     transform: translateY(-3px);
 
     box-shadow:
-        0 12px 35px rgba(34, 211, 238, 0.40);
+        0 12px 35px
+        rgba(34, 211, 238, 0.40);
 }
 
 
@@ -463,71 +808,505 @@ button:hover {
 ========================================= */
 
 footer {
+
     background:
         linear-gradient(
             135deg,
-            #050B14,
-            #0B1726
+            var(--bg-color),
+            var(--header-color)
         );
 
-    color: #A5CFE0;
+    color: var(--muted-text);
 
     text-align: center;
 
     padding: 30px 20px;
 
-    margin-top: 70px;
+    margin-top: 50px;
 
     border-top:
-        1px solid rgba(34, 211, 238, 0.18);
+        1px solid var(--border-color);
+
+    transition:
+        background var(--transition);
 }
 
+
 footer p {
+
     margin: 0;
 }
 
 
 /* =========================================
-   MOBILE
+   TABLET
 ========================================= */
 
-@media (max-width: 700px) {
+@media (min-width: 768px) {
 
     header {
-        padding: 55px 20px;
+        padding: 60px 20px;
     }
+
 
     header h1 {
-        font-size: 36px;
+        font-size: 42px;
     }
 
+
     header p {
+        font-size: 17px;
+    }
+
+
+    nav {
+        padding: 20px;
+    }
+
+
+    nav ul {
+
+        flex-direction: row;
+
+        gap: 10px;
+    }
+
+
+    nav ul li {
+
+        width: auto;
+    }
+
+
+    nav ul li a {
+
+        width: auto;
+
+        padding: 10px 18px;
+
         font-size: 16px;
     }
 
-    nav ul li {
-        margin: 4px 2px;
+
+    #theme-toggle {
+
+        display: inline-block;
+
+        margin-left: 15px;
+
+        margin-top: 0;
     }
 
-    nav ul li a {
-        padding: 8px 10px;
-        font-size: 14px;
-    }
 
     main {
-        margin: 35px auto;
-        padding: 0 15px;
+
+        margin: 45px auto;
+
+        padding: 0 20px;
     }
+
 
     section {
-        padding: 28px 22px;
+
+        padding: 35px 25px;
     }
+
 
     section h2 {
-        font-size: 27px;
+
+        font-size: 30px;
     }
 
-    form {
-        padding: 25px 20px;
+
+    section p {
+
+        font-size: 16px;
     }
+
+
+    .learning-section {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 25px;
+    }
+
+
+    form {
+
+        padding: 35px;
+    }
+
+
+    form button {
+
+        width: auto;
+    }
+
+
+    footer {
+
+        margin-top: 60px;
+    }
+}
+
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media (min-width: 1024px) {
+
+    header {
+
+        padding: 75px 20px 65px;
+    }
+
+
+    header h1 {
+
+        font-size: 50px;
+    }
+
+
+    header p {
+
+        font-size: 19px;
+    }
+
+
+    main {
+
+        margin: 60px auto;
+
+        padding: 0 25px;
+    }
+
+
+    section {
+
+        padding: 45px;
+    }
+
+
+    section h2 {
+
+        font-size: 32px;
+    }
+
+
+    .learning-section {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 25px;
+    }
+
+
+    footer {
+
+        margin-top: 70px;
+    }
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+nav a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+
+    outline:
+        3px solid var(--secondary-color);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior: auto;
+    }
+
+
+    * {
+
+        transition: none !important;
+
+        animation: none !important;
+    }
+}
+/* =========================================
+   SLATE BLUE LIGHT THEME
+========================================= */
+
+html.light-mode body {
+    background: #B8CCD1;
+    color: #172B34;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+html.light-mode header {
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(34, 211, 238, 0.28),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(8, 145, 178, 0.18),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #8FAFB7,
+            #B8CCD1,
+            #9EBBC2
+        );
+
+    color: #102A33;
+}
+
+html.light-mode header h1 {
+    color: #102A33;
+    text-shadow: 0 0 15px rgba(34, 211, 238, 0.20);
+}
+
+html.light-mode header p {
+    color: #365761;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+html.light-mode nav {
+    background: rgba(31, 61, 70, 0.96);
+    border-bottom: 1px solid rgba(34, 211, 238, 0.30);
+}
+
+html.light-mode nav ul li a {
+    color: #C8E3E7;
+}
+
+html.light-mode nav ul li a:hover {
+    color: #102A33;
+}
+
+
+/* =========================================
+   MAIN SECTIONS
+========================================= */
+
+html.light-mode section {
+    background:
+        linear-gradient(
+            145deg,
+            #D3E1E4,
+            #BFD1D5
+        );
+
+    border: 1px solid rgba(8, 100, 120, 0.25);
+
+    box-shadow:
+        0 15px 40px rgba(30, 60, 70, 0.20);
+}
+
+html.light-mode section h2 {
+    color: #08758A;
+
+    text-shadow:
+        0 0 12px rgba(8, 117, 138, 0.15);
+}
+
+html.light-mode section h3 {
+    color: #08677A;
+}
+
+html.light-mode section p {
+    color: #38545C;
+}
+
+
+/* =========================================
+   LISTS
+========================================= */
+
+html.light-mode li {
+    color: #38545C;
+}
+
+
+/* =========================================
+   LEARNING CARDS
+========================================= */
+
+html.light-mode .learning-section article {
+    background:
+        linear-gradient(
+            135deg,
+            #CBDDE1,
+            #B5CBD0
+        );
+
+    border: 1px solid rgba(8, 100, 120, 0.25);
+
+    border-left: 4px solid #0891B2;
+
+    box-shadow:
+        0 8px 20px rgba(30, 60, 70, 0.12);
+}
+
+html.light-mode .learning-section article:hover {
+    box-shadow:
+        0 15px 35px rgba(30, 60, 70, 0.20),
+        0 0 25px rgba(34, 211, 238, 0.15);
+}
+
+
+/* =========================================
+   PROJECT CARDS
+========================================= */
+
+html.light-mode .project {
+    background:
+        linear-gradient(
+            135deg,
+            #CBDDE1,
+            #B5CBD0
+        );
+
+    border: 1px solid rgba(8, 100, 120, 0.25);
+
+    border-left: 4px solid #0891B2;
+}
+
+html.light-mode .project h3 {
+    color: #08758A;
+}
+
+
+/* =========================================
+   CONTACT INFORMATION
+========================================= */
+
+html.light-mode .contact-info {
+    background:
+        linear-gradient(
+            135deg,
+            #CBDDE1,
+            #B5CBD0
+        );
+
+    border: 1px solid rgba(8, 100, 120, 0.25);
+}
+
+html.light-mode .contact-info h3 {
+    color: #08758A;
+}
+
+html.light-mode .contact-info p {
+    color: #38545C;
+}
+
+
+/* =========================================
+   CONTACT FORM
+========================================= */
+
+html.light-mode form {
+    background:
+        linear-gradient(
+            145deg,
+            #CBDDE1,
+            #B5CBD0
+        );
+
+    border: 1px solid rgba(8, 100, 120, 0.25);
+}
+
+html.light-mode legend {
+    color: #08758A;
+}
+
+html.light-mode label {
+    color: #17343D;
+}
+
+html.light-mode input,
+html.light-mode textarea {
+    background: #AFC7CC;
+
+    color: #172B34;
+
+    border: 1px solid rgba(8, 100, 120, 0.30);
+}
+
+html.light-mode input::placeholder,
+html.light-mode textarea::placeholder {
+    color: #58747C;
+}
+
+html.light-mode input:focus,
+html.light-mode textarea:focus {
+    background: #C5D9DD;
+}
+
+
+/* =========================================
+   LINKS
+========================================= */
+
+html.light-mode a {
+    color: #08758A;
+}
+
+html.light-mode a:hover {
+    color: #055968;
+}
+
+
+/* =========================================
+   THEME BUTTON
+========================================= */
+
+html.light-mode #theme-toggle {
+    color: #67E8F9;
+    border-color: #67E8F9;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+html.light-mode footer {
+    background:
+        linear-gradient(
+            135deg,
+            #8FAFB7,
+            #AFC7CC
+        );
+
+    color: #294B55;
+
+    border-top:
+        1px solid rgba(8, 100, 120, 0.25);
 }
