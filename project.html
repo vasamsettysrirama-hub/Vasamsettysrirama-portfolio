@@ -42,6 +42,10 @@
                 <a href="contact.html">Contact</a>
             </li>
         </ul>
+
+        <button id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+            ☀️ Light Mode
+        </button>
     </nav>
 
 
@@ -60,7 +64,7 @@
         </section>
 
 
-        <section aria-labelledby="learning-heading">
+        <section class="learning-section" aria-labelledby="learning-heading">
 
             <h2 id="learning-heading">Current Learning</h2>
 
@@ -129,6 +133,27 @@
         </p>
 
     </footer>
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const button = document.getElementById("theme-toggle");
+
+    button.addEventListener("click", function () {
+
+        document.documentElement.classList.toggle("light-mode");
+
+        if (document.documentElement.classList.contains("light-mode")) {
+            button.textContent = "🌙 Dark Mode";
+        } else {
+            button.textContent = "☀️ Light Mode";
+        }
+
+    });
+
+});
+</script>
 
 </body>
 
